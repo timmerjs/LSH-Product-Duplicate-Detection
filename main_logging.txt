@@ -1,0 +1,208 @@
+C:\Users\sates\anaconda3\python.exe C:\Users\sates\Documents\Python\ComputerSciencePaper\main.py 
+Creating bootstraps...
+Created 25 bootstrap samples.
+
+
+################# DATA STATISTICS SUMMARY #################
+Total number of products in the dataset: 1624
+Number of distinct modelIDs: 1262
+Number of duplicate pairs: 399
+Number of products where modelID is not in the title: 323
+
+Number of products per website:
+bestbuy.com: 773
+newegg.com: 668
+amazon.com: 163
+thenerds.net: 20
+
+Statistics for the number of feature attributes per product:
+Mean: 28.641625615763548
+Std_dev: 14.009176841664136
+Median: 32.0
+Min: 1
+Max: 65
+Percentage of products with more than 20 attributes: 73.34%
+Note: the plot of these statistics can be found at "data/n_features_distribution.png"
+Initialisation successful, now iterating over all bootstraps...
+
+
+############################# START LSH #############################
+Bootstrap 1 ended in 9.1647 seconds.
+Bootstrap 2 ended in 8.8570 seconds.
+Bootstrap 3 ended in 9.6289 seconds.
+Bootstrap 4 ended in 10.0999 seconds.
+Bootstrap 5 ended in 10.2475 seconds.
+Bootstrap 6 ended in 8.5817 seconds.
+Bootstrap 7 ended in 8.1092 seconds.
+Bootstrap 8 ended in 9.8593 seconds.
+Bootstrap 9 ended in 9.0826 seconds.
+Bootstrap 10 ended in 8.9832 seconds.
+Bootstrap 11 ended in 8.6795 seconds.
+Bootstrap 12 ended in 9.8921 seconds.
+Bootstrap 13 ended in 9.9729 seconds.
+Bootstrap 14 ended in 9.4252 seconds.
+Bootstrap 15 ended in 11.6062 seconds.
+Bootstrap 16 ended in 9.0203 seconds.
+Bootstrap 17 ended in 8.1227 seconds.
+Bootstrap 18 ended in 9.1773 seconds.
+Bootstrap 19 ended in 9.5036 seconds.
+Bootstrap 20 ended in 10.2372 seconds.
+Bootstrap 21 ended in 8.6944 seconds.
+Bootstrap 22 ended in 9.3082 seconds.
+Bootstrap 23 ended in 8.3379 seconds.
+Bootstrap 24 ended in 10.8382 seconds.
+Bootstrap 25 ended in 9.4303 seconds.
+
+
+LSH analysis completed, plots can be found at "data/plots\12-12-2024_18u32m17s".
+
+
+########################## START MSMP-FAST ##########################
+MSMP-FAST completed on bootstrap 2 in 535.5745 seconds.
+MSMP-FAST completed on bootstrap 7 in 544.0859 seconds.
+MSMP-FAST completed on bootstrap 4 in 557.3278 seconds.
+MSMP-FAST completed on bootstrap 3 in 560.4259 seconds.
+MSMP-FAST completed on bootstrap 8 in 576.1017 seconds.
+MSMP-FAST completed on bootstrap 6 in 578.5305 seconds.
+MSMP-FAST completed on bootstrap 5 in 583.8455 seconds.
+MSMP-FAST completed on bootstrap 1 in 590.0127 seconds.
+MSMP-FAST completed on bootstrap 9 in 543.4543 seconds.
+MSMP-FAST completed on bootstrap 11 in 527.8620 seconds.
+MSMP-FAST completed on bootstrap 10 in 559.6247 seconds.
+MSMP-FAST completed on bootstrap 12 in 556.2835 seconds.
+MSMP-FAST completed on bootstrap 15 in 555.7297 seconds.
+MSMP-FAST completed on bootstrap 14 in 563.2916 seconds.
+MSMP-FAST completed on bootstrap 13 in 574.9704 seconds.
+MSMP-FAST completed on bootstrap 16 in 569.5669 seconds.
+MSMP-FAST completed on bootstrap 17 in 1041.6942 seconds.
+MSMP-FAST completed on bootstrap 18 in 1056.4942 seconds.
+MSMP-FAST completed on bootstrap 19 in 1073.2938 seconds.
+MSMP-FAST completed on bootstrap 22 in 1046.0201 seconds.
+MSMP-FAST completed on bootstrap 20 in 1077.4238 seconds.
+MSMP-FAST completed on bootstrap 21 in 1065.7271 seconds.
+MSMP-FAST completed on bootstrap 24 in 1063.9065 seconds.
+MSMP-FAST completed on bootstrap 23 in 1075.2974 seconds.
+MSMP-FAST completed on bootstrap 25 in 303.8008 seconds.
+Average running time MSMP-FAST algorithm: [28.44855278].
+TOTAL RUNNING TIME ON ALL BOOTSTRAPS: 2724.7250 seconds.
+
+
+##################### START LSH ON SMALL DATASET #####################
+Finished testing LSH on a smaller dataset.
+Results can be found at: "data/plots/TestDataLSH.png".
+
+
+################## START COMPARISON MSMP ALGORITHMS ##################
+Creating bootstraps...
+Created 50 bootstrap samples.
+MSMP-FAST completed on bootstrap 1 in 1.9840 seconds.
+MSMP completed on bootstrap 1 in 23.8126 seconds.
+MSMP-FAST completed on bootstrap 2 in 2.1522 seconds.
+MSMP completed on bootstrap 2 in 20.7181 seconds.
+MSMP-FAST completed on bootstrap 3 in 1.9043 seconds.
+MSMP completed on bootstrap 3 in 19.0896 seconds.
+MSMP-FAST completed on bootstrap 4 in 1.9405 seconds.
+MSMP completed on bootstrap 4 in 22.0116 seconds.
+MSMP-FAST completed on bootstrap 5 in 2.0982 seconds.
+MSMP completed on bootstrap 5 in 21.2002 seconds.
+MSMP-FAST completed on bootstrap 6 in 1.6515 seconds.
+MSMP completed on bootstrap 6 in 20.9654 seconds.
+MSMP-FAST completed on bootstrap 7 in 1.8789 seconds.
+MSMP completed on bootstrap 7 in 21.3875 seconds.
+MSMP-FAST completed on bootstrap 8 in 2.1269 seconds.
+MSMP completed on bootstrap 8 in 24.8447 seconds.
+MSMP-FAST completed on bootstrap 9 in 1.8498 seconds.
+MSMP completed on bootstrap 9 in 21.2818 seconds.
+MSMP-FAST completed on bootstrap 10 in 1.9937 seconds.
+MSMP completed on bootstrap 10 in 23.8117 seconds.
+MSMP-FAST completed on bootstrap 11 in 2.0691 seconds.
+MSMP completed on bootstrap 11 in 21.6351 seconds.
+MSMP-FAST completed on bootstrap 12 in 2.2330 seconds.
+MSMP completed on bootstrap 12 in 20.3759 seconds.
+MSMP-FAST completed on bootstrap 13 in 1.7824 seconds.
+MSMP completed on bootstrap 13 in 20.6868 seconds.
+MSMP-FAST completed on bootstrap 14 in 2.0287 seconds.
+MSMP completed on bootstrap 14 in 20.8412 seconds.
+MSMP-FAST completed on bootstrap 15 in 1.6797 seconds.
+MSMP completed on bootstrap 15 in 18.8674 seconds.
+MSMP-FAST completed on bootstrap 16 in 2.0328 seconds.
+MSMP completed on bootstrap 16 in 21.7339 seconds.
+MSMP-FAST completed on bootstrap 17 in 1.5534 seconds.
+MSMP completed on bootstrap 17 in 18.9911 seconds.
+MSMP-FAST completed on bootstrap 18 in 1.8431 seconds.
+MSMP completed on bootstrap 18 in 20.5935 seconds.
+MSMP-FAST completed on bootstrap 19 in 2.1553 seconds.
+MSMP completed on bootstrap 19 in 22.7258 seconds.
+MSMP-FAST completed on bootstrap 20 in 1.8838 seconds.
+MSMP completed on bootstrap 20 in 20.7287 seconds.
+MSMP-FAST completed on bootstrap 21 in 1.6115 seconds.
+MSMP completed on bootstrap 21 in 15.4862 seconds.
+MSMP-FAST completed on bootstrap 22 in 1.7278 seconds.
+MSMP completed on bootstrap 22 in 20.7783 seconds.
+MSMP-FAST completed on bootstrap 23 in 2.1834 seconds.
+MSMP completed on bootstrap 23 in 21.7964 seconds.
+MSMP-FAST completed on bootstrap 24 in 2.0406 seconds.
+MSMP completed on bootstrap 24 in 28.7690 seconds.
+MSMP-FAST completed on bootstrap 25 in 3.2890 seconds.
+MSMP completed on bootstrap 25 in 39.5061 seconds.
+MSMP-FAST completed on bootstrap 26 in 3.6601 seconds.
+MSMP completed on bootstrap 26 in 41.7389 seconds.
+MSMP-FAST completed on bootstrap 27 in 4.8785 seconds.
+MSMP completed on bootstrap 27 in 39.7859 seconds.
+MSMP-FAST completed on bootstrap 28 in 4.3453 seconds.
+MSMP completed on bootstrap 28 in 49.9111 seconds.
+MSMP-FAST completed on bootstrap 29 in 5.2858 seconds.
+MSMP completed on bootstrap 29 in 44.4400 seconds.
+MSMP-FAST completed on bootstrap 30 in 3.2730 seconds.
+MSMP completed on bootstrap 30 in 51.4672 seconds.
+MSMP-FAST completed on bootstrap 31 in 2.7606 seconds.
+MSMP completed on bootstrap 31 in 38.2868 seconds.
+MSMP-FAST completed on bootstrap 32 in 5.2792 seconds.
+MSMP completed on bootstrap 32 in 36.5951 seconds.
+MSMP-FAST completed on bootstrap 33 in 5.4625 seconds.
+MSMP completed on bootstrap 33 in 48.2716 seconds.
+MSMP-FAST completed on bootstrap 34 in 2.6711 seconds.
+MSMP completed on bootstrap 34 in 38.6909 seconds.
+MSMP-FAST completed on bootstrap 35 in 5.4971 seconds.
+MSMP completed on bootstrap 35 in 50.2611 seconds.
+MSMP-FAST completed on bootstrap 36 in 3.2693 seconds.
+MSMP completed on bootstrap 36 in 47.2115 seconds.
+MSMP-FAST completed on bootstrap 37 in 3.2287 seconds.
+MSMP completed on bootstrap 37 in 44.5174 seconds.
+MSMP-FAST completed on bootstrap 38 in 4.5180 seconds.
+MSMP completed on bootstrap 38 in 40.2765 seconds.
+MSMP-FAST completed on bootstrap 39 in 4.1481 seconds.
+MSMP completed on bootstrap 39 in 49.3024 seconds.
+MSMP-FAST completed on bootstrap 40 in 3.1853 seconds.
+MSMP completed on bootstrap 40 in 47.9940 seconds.
+MSMP-FAST completed on bootstrap 41 in 3.8212 seconds.
+MSMP completed on bootstrap 41 in 44.9253 seconds.
+MSMP-FAST completed on bootstrap 42 in 4.7256 seconds.
+MSMP completed on bootstrap 42 in 48.3428 seconds.
+MSMP-FAST completed on bootstrap 43 in 3.9392 seconds.
+MSMP completed on bootstrap 43 in 37.2941 seconds.
+MSMP-FAST completed on bootstrap 44 in 2.5379 seconds.
+MSMP completed on bootstrap 44 in 51.2850 seconds.
+MSMP-FAST completed on bootstrap 45 in 5.8784 seconds.
+MSMP completed on bootstrap 45 in 51.3019 seconds.
+MSMP-FAST completed on bootstrap 46 in 5.2915 seconds.
+MSMP completed on bootstrap 46 in 47.1237 seconds.
+MSMP-FAST completed on bootstrap 47 in 5.0773 seconds.
+MSMP completed on bootstrap 47 in 52.5045 seconds.
+MSMP-FAST completed on bootstrap 48 in 4.6723 seconds.
+MSMP completed on bootstrap 48 in 60.3913 seconds.
+MSMP-FAST completed on bootstrap 49 in 3.2313 seconds.
+MSMP completed on bootstrap 49 in 48.3404 seconds.
+MSMP-FAST completed on bootstrap 50 in 4.5118 seconds.
+MSMP completed on bootstrap 50 in 33.0855 seconds.
+MSMP-FAST Running Times:
+Mean: 3.0968 seconds
+Standard Deviation: 1.3267 seconds
+
+MSMP Running Times:
+Mean: 33.9197 seconds
+Standard Deviation: 12.9391 seconds
+Finished comparing MSMP and MSMP-FAST on a smaller dataset.
+Results can be found at: "smalldata/plots\12-12-2024_19u17m45s".
+
+Process finished with exit code 0
