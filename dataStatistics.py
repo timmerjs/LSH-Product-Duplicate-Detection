@@ -52,7 +52,7 @@ def dataStats(base_directory):
 
     # Print results
     print("\n")
-    print("################# DATA STATISTICS SUMMARY #################")
+    print("#################### DATA STATISTICS SUMMARY ####################\n")
     print(f"Total number of products in the dataset: {total_products}")
     print(f"Number of distinct modelIDs: {len(all_modelIDs)}")
     print(f"Number of duplicate pairs: {n_duplicate_pairs}")
@@ -74,13 +74,13 @@ def dataStats(base_directory):
     plt.savefig(statfig_path)
     plt.close()
 
-    print("\nStatistics for the number of feature attributes per product:")
+    print("\nSummary statistics for the number of listed attributes per product:")
     for stat_name, stat_value in stats.items():
         print(f"{stat_name.capitalize()}: {stat_value}")
     min_features = 20
     percentage_more_than_10 = (np.sum(feature_counts_array >= min_features) / len(feature_counts_array)) * 100
-    print(f"Percentage of products with more than {min_features} attributes: {percentage_more_than_10:.2f}%")
-    print(f"Note: the plot of these statistics can be found at \"{statfig_path}\"")
+    print(f"\nPercentage of products with more than {min_features} attributes: {percentage_more_than_10:.2f}%")
+    print(f"Note: the plot of these statistics can be found at \"{statfig_path}\"\n")
 
 
 

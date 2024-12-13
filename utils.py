@@ -31,16 +31,6 @@ def extract_all_brands(datapath, output_path):
 
 
 def diffBrand(product1, product2, base_directory):
-    """
-    Check if two products are from different brands.
-
-    Parameters:
-        product1, product2 (dict): Products to compare.
-        all_brands (set): Set of valid brand names.
-
-    Returns:
-        bool: True if brands are different, False otherwise.
-    """
     # Load the brands dataset
     with open(f'{base_directory}/all_brands.json', 'r') as brands_file:
         all_brands = set(json.load(brands_file))
@@ -54,15 +44,6 @@ def diffBrand(product1, product2, base_directory):
 
 
 def sameShop(product1, product2):
-    """
-    Check if two products are from the same shop.
-
-    Parameters:
-        product1, product2 (dict): Products to compare.
-
-    Returns:
-        bool: True if products are from the same shop, False otherwise.
-    """
     shop1 = product1.get("shop")
     shop2 = product2.get("shop")
     if shop1 is not None and shop2 is not None and (shop1 in shop2 or shop2 in shop1):
@@ -72,17 +53,7 @@ def sameShop(product1, product2):
 
 
 def diffScreenSize(product1, product2):
-    """
-    Check if the screen sizes of two products differ by more than 1 inch.
-
-    Parameters:
-        product1, product2 (dict): Products to compare.
-
-    Returns:
-        bool: True if screen sizes differ by more than 1 inch, False otherwise.
-    """
     def extract_all_screen_sizes(features):
-        """Extract all screen sizes from features containing 'inch'."""
         screen_sizes = []
         for key, value in features.items():
             if "screen size" in key or "display size" in key:
@@ -109,7 +80,6 @@ def diffScreenSize(product1, product2):
 
 
 def extract_model_words_title(title):
-    """Extract model words consisting of alphanumeric tokens."""
     # Predefined frequent title words (hard-coded)
     freq_title_words = {"hdtv", "led", "lcd", "smart", "ledlcd", "hd"}
 
@@ -136,7 +106,6 @@ def extract_model_words_title(title):
 
 
 def extract_extended_model_words(KVP):
-    """Extract extended model words consisting of alphanumeric tokens."""
     regular_mw = set()
     extended_mw = set()
     #key_value_regex = re.compile(r"^\d{2,}$|^\d+\.\d+[a-zA-Z]+$|^\d+[a-zA-Z]+$")
@@ -182,9 +151,7 @@ def find_and_save_duplicates(data_file_path, output_file_path):
 
 
 def calcSim(a, b, q):
-    """Calculate the q-gram similarity for strings a and b"""
     def generate_qgrams(s, q):
-        """Generate q-grams from a string with padding."""
         padded = f"{'#' * (q - 1)}{s}{'#' * (q - 1)}"
         return {padded[i:i + q] for i in range(len(padded) - q + 1)}
 
@@ -216,17 +183,6 @@ def mw(mw1, mw2):
 
 
 def compute_duplicates(candidate_matrix):
-    """
-    Computes a dictionary of duplicates from the candidate pair matrix.
-
-    Parameters:
-    candidate_matrix (numpy array): A square matrix where [i, j] = 1 indicates
-                                     that column i and row j are a candidate pair.
-
-    Returns:
-    dict: A dictionary where keys are column indices (1-indexed) and values are lists
-          of row indices (1-indexed) for which there is a 1 in the matrix.
-    """
     duplicates = {}
     num_rows, num_cols = candidate_matrix.shape
 
@@ -239,4 +195,5 @@ def compute_duplicates(candidate_matrix):
         duplicates[col_idx + 1] = (row_indices + 1).tolist()
 
     return duplicates
+
 

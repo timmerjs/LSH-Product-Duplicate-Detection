@@ -15,16 +15,6 @@ k = 20  # If both products have more than k features, don't calculate TMWM
 
 
 def msmp(file_path, candidate_pairs_matrix, base_directory):
-    """
-    MSMP-FAST Algorithm Implementation.
-
-    Parameters:
-        file_path (str): Path to the dataset file containing product information in JSON format.
-        candidate_pairs_matrix (np.ndarray): n x n matrix indicating candidate pairs (1 for candidate, 0 otherwise).
-
-    Returns:
-        list: Clusters of similar products.
-    """
     # Load dataset
     with open(file_path, 'r') as file:
         products = json.load(file)
@@ -91,12 +81,7 @@ def msmp(file_path, candidate_pairs_matrix, base_directory):
     return dist, products  # ε should be set as a constant in the imported module
 
 
-def Alternative_hClustering(dist, epsilon, products):
-    """
-    Perform hierarchical clustering with an emphasis on avoiding clusters with infinite pairwise distances.
-
-    Returns a set of duplicate pairs based on distance matrix and epsilon threshold.
-    """
+def hClustering(dist, epsilon, products):
     n = dist.shape[0]
     clusters = {i: [i] for i in range(n)}
 
@@ -128,11 +113,11 @@ def Alternative_hClustering(dist, epsilon, products):
         for x in clusters[i]:
             for y in clusters[i]:
                 if x != y:
-                    # Use frozenset to ensure (a,b) and (b,a) are treated as the same pair
-                    duplicate_pairs.add(frozenset([
+                    # Use sorted tuples to ensure (a,b) and (b,a) are treated as the same pair
+                    duplicate_pairs.add(tuple(sorted([
                         products[x]["uniqueProductID"],
                         products[y]["uniqueProductID"]
-                    ]))
+                    ])))
 
         del clusters[j]
 
@@ -145,98 +130,5 @@ def Alternative_hClustering(dist, epsilon, products):
                 if new_dist <= epsilon:
                     heapq.heappush(heap, (new_dist, i, k))
 
-    return duplicate_pairs
-
-
-def hClustering(dist, epsilon, products):
-    """
-    Perform hierarchical clustering with an emphasis on avoiding clusters with infinite pairwise distances.
-
-    Parameters:
-        dist (numpy.ndarray): A 2D array where dist[i, j] is the distance between product i and product j.
-        epsilon (float): The threshold for merging clusters.
-        products (list): List of product dictionaries, each containing a "uniqueProductID" field.
-
-    Returns:
-        dict: A dictionary where each key is a uniqueProductID and the value is a list of duplicate uniqueProductIDs.
-    """
-    n = dist.shape[0]
-
-    # Initialize clusters: each product starts in its own cluster
-    clusters = {i: [i] for i in range(n)}
-
-    # Initialize dictionary for duplicates
-    duplicates = {product["uniqueProductID"]: [] for product in products}
-
-    # Initialize a priority queue (heap) with all valid distances <= epsilon
-    heap = []
-    for i in range(n):
-        for j in range(i + 1, n):
-            if dist[i, j] <= epsilon:
-                heapq.heappush(heap, (dist[i, j], i, j))
-
-    while heap:
-        # Pop the smallest distance from the heap
-        min_dist, i, j = heapq.heappop(heap)
-
-        # Check if clusters i and j still exist
-        if i not in clusters or j not in clusters:
-            continue
-
-        # If the minimum distance is greater than epsilon, stop processing
-        if min_dist > epsilon:
-            break
-
-        # Verify that merging clusters i and j is valid (no pairwise distance is np.inf)
-        cluster_i = clusters[i]
-        cluster_j = clusters[j]
-        valid_merge = True
-        for x in cluster_i:
-            for y in cluster_j:
-                if dist[x, y] == np.inf:
-                    valid_merge = False
-                    break
-            if not valid_merge:
-                break
-
-        # Skip merging if any pairwise distance is np.inf
-        if not valid_merge:
-            continue
-
-        # Merge cluster j into cluster i
-        clusters[i].extend(cluster_j)
-
-        # Update the duplicates dictionary
-        for x in clusters[i]:
-            for y in clusters[i]:
-                if x != y:
-                    unique_id_x = products[x]["uniqueProductID"]
-                    unique_id_y = products[y]["uniqueProductID"]
-                    if unique_id_y not in duplicates[unique_id_x]:
-                        duplicates[unique_id_x].append(unique_id_y)
-
-        # Delete cluster j
-        del clusters[j]
-
-        # Recalculate distances for the updated cluster i with all other clusters
-        for k in list(clusters.keys()):
-            if k != i:
-                new_dist = np.inf
-                for x in clusters[i]:
-                    for y in clusters[k]:
-                        new_dist = min(new_dist, dist[x, y])
-                        if new_dist == np.inf:
-                            break
-                    if new_dist == np.inf:
-                        break
-                if new_dist <= epsilon:
-                    heapq.heappush(heap, (new_dist, i, k))
-
-    # Convert duplicates dictionary to a set of unique duplicate pairs
-    duplicate_pairs = set()
-    for unique_id, dups in duplicates.items():
-        for dup in dups:
-            # Use frozenset to ensure (a,b) and (b,a) are considered the same pair
-            duplicate_pairs.add(frozenset([unique_id, dup]))
 
     return duplicate_pairs

@@ -16,18 +16,10 @@ delta = 0.8  # Threshold for updated model word similarity
 epsilon = 0  # Final similarity threshold
 
 def preprocess_title(title):
-    """Preprocess product title by replacing special characters and common words."""
     title = re.sub(r'[\&\/\-\_\,]', ' ', title)
     title = re.sub(r'\band\b|\bor\b|\bthe\b', ' ', title, flags=re.IGNORECASE)
     return re.sub(r'\s+', ' ', title.strip())
 
-
-def OLDsplit_word(word):
-    """Split a word into numeric and non-numeric parts."""
-    numeric_part_list = re.findall(r"[-+]?(?:\d*\.*\d+)", word)
-    numeric_part = ''.join(number for number in numeric_part_list)
-    non_numeric_part = ''.join(char for char in word if not char.isdigit() or char == '.')
-    return numeric_part, non_numeric_part
 
 def split_word(s: str):
     digits = []
@@ -51,8 +43,6 @@ def split_word(s: str):
 
 
 def check_model_word_pair(model_words1, model_words2, eta):
-    """Check if any pair of model words violates the duplication criteria."""
-
     num_dissimilar_pairs = 0
     for word1 in model_words1:
         for word2 in model_words2:
@@ -86,7 +76,6 @@ def check_model_word_pair(model_words1, model_words2, eta):
 
 
 def calc_cosine_sim(title1, title2):
-    """Calculate cosine similarity between two product titles."""
     vec1, vec2 = Counter(title1.split()), Counter(title2.split())
     intersection = len(vec1 & vec2)
     norm1 = math.sqrt(len(vec1))
@@ -94,7 +83,6 @@ def calc_cosine_sim(title1, title2):
     return intersection / (norm1 * norm2) if norm1 and norm2 else 0.0
 
 def avg_lv_sim(words1, words2):
-    """Calculate average Levenshtein similarity between two sets of words."""
     num = 0.0
     den = 0.0
     for word1 in words1:
@@ -106,7 +94,6 @@ def avg_lv_sim(words1, words2):
 
 
 def avg_lv_sim_mw(words1, words2):
-    """Calculate average Levenshtein similarity between two sets of words."""
     num = 0.0
     den = 0.0
     for word1 in words1:
@@ -124,7 +111,6 @@ def avg_lv_sim_mw(words1, words2):
     return num/den if den > 0.0 else 0.0
 
 def calculate_similarity(product1, product2):
-    """Calculate overall similarity between two products."""
     title1, title2 = product1["title"], product2["title"]
     title1, title2 = preprocess_title(title1), preprocess_title(title2)
     model_words1, model_words2 = extract_model_words_title(title1), extract_model_words_title(title2)
@@ -165,7 +151,6 @@ def calculate_similarity(product1, product2):
 
 
 def main(file_path, id1, id2):
-    """Main function to calculate similarity between two products."""
     with open(file_path, 'r') as file:
         data = json.load(file)
 
@@ -193,7 +178,6 @@ def main(file_path, id1, id2):
 
 
 def test_methods(file_path):
-    """Test individual methods on random pairs from the dataset."""
     # Load dataset
     with open(file_path, 'r') as file:
         data = json.load(file)

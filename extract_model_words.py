@@ -50,17 +50,11 @@ def extract_all_model_words(json_file):
 
 # Filter on model words that occur more than once
 def filter_freq_mw(regular_mw, extended_mw):
-    """
-    Filters model words that occur more than once.
-    """
     return {word for word, count in regular_mw.items() if count > 1}, {word for word, count in extended_mw.items() if count > 2}
 
 
 # Save the regular and extended model words to a file
 def save_freq_mw(regular_mw, extended_mw, output_file1, output_file2):
-    """
-    Saves the filtered frequent model words to a JSON file.
-    """
     with open(output_file1, 'w') as file:
         json.dump(list(regular_mw), file, indent=2)
     with open(output_file2, 'w') as file:
@@ -68,9 +62,6 @@ def save_freq_mw(regular_mw, extended_mw, output_file1, output_file2):
 
 
 def add_all_model_words(base_directory):
-    """
-    Processes all bootstrap directories to generate mw-fast files.
-    """
     # Iterate over all bootstrap directories
     for folder_name in os.listdir(base_directory):
         folder_path = os.path.join(base_directory, folder_name)
@@ -90,8 +81,3 @@ def add_all_model_words(base_directory):
 
                             # Save frequent model words
                             save_freq_mw(regular_mw, extended_mw, output_file1, output_file2)
-
-
-# Example usage
-#base_directory = "data"
-#bootstraps_add_mw_fast(base_directory)

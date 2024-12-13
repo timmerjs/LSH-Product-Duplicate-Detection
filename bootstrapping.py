@@ -33,13 +33,6 @@ def normalize_units(text):
 
 # Function to create bootstrap samples
 def create_bootstraps(base_directory, n_bootstraps):
-    """
-    Create bootstrap samples by drawing with replacement, removing duplicates, and splitting into train/test sets.
-
-    Parameters:
-        file_path (str): Path to the input JSON file.
-        n_bootstraps (int): Number of bootstrap samples to generate.
-    """
     # Set seed for reproducibility
     SEED = 123
 
