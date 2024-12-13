@@ -9,7 +9,7 @@ import tmwm
 
 gamma = 0.70  # DEFINE!
 mu = 0.65  # DEFINE!
-#epsilon = 0.5  # DEFINE!
+# epsilon = 0.5  # DEFINE!
 q = 3  # size of q-grams for calcSim function
 k = 20  # If both products have more than k features, don't calculate TMWM
 

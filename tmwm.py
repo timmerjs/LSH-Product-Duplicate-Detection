@@ -11,9 +11,9 @@ from utils import extract_model_words_title
 # Adjustable parameters
 alpha = 0.6  # Cosine similarity threshold
 beta = 0.1   # Weight for average Levenshtein similarity
-eta = 0.5  # Threshold for first check if products can be classified as different
-delta = 0.8  # Threshold for updated model word similarity
-epsilon = 0  # Final similarity threshold
+eta = 0.0  # 0.5 Threshold for first check if products can be classified as different
+delta = 0.4  # 0.8 Threshold for updated model word similarity
+epsilon = 0.3  # 0.0  Final similarity threshold
 
 def preprocess_title(title):
     title = re.sub(r'[\&\/\-\_\,]', ' ', title)
@@ -68,8 +68,8 @@ def check_model_word_pair(model_words1, model_words2, eta):
                 # Check similarity and numeric mismatch
                 if num1 != num2:
                     if non_numeric_sim >= eta:
-                        num_dissimilar_pairs += 1
-                        if num_dissimilar_pairs == 2:  # Allow for two "typos"
+                        num_dissimilar_pairs += 1  # Allow for one "typo", so only return False for two or more rejections
+                        if num_dissimilar_pairs == 2:
                             return False  # Products are not duplicates  # Products are not duplicates
 
     return True  # No violations found
@@ -148,76 +148,3 @@ def calculate_similarity(product1, product2):
     if final_similarity > epsilon:
         return final_similarity
     return -1
-
-
-def main(file_path, id1, id2):
-    with open(file_path, 'r') as file:
-        data = json.load(file)
-
-    product1 = next((item for item in data if item["uniqueProductID"] == id1), None)
-    product2 = next((item for item in data if item["uniqueProductID"] == id2), None)
-
-    if not product1 or not product2:
-        print("One or both products not found.")
-        return
-
-    title1, title2 = product1["title"], product2["title"]
-    preprocessed_title1 = preprocess_title(title1)
-    preprocessed_title2 = preprocess_title(title2)
-    model_words1 = extract_model_words_title(preprocessed_title1)
-    model_words2 = extract_model_words_title(preprocessed_title2)
-
-    # Print titles and model words
-    print(f"\nTitle1: {preprocessed_title1}")
-    print(f"Title2: {preprocessed_title2}")
-    print(f"Model Words Title1: {model_words1}")
-    print(f"Model Words Title2: {model_words2}")
-
-    similarity = calculate_similarity(product1, product2)
-    print(f"Similarity between products {id1} and {id2}: {similarity}")
-
-
-def test_methods(file_path):
-    # Load dataset
-    with open(file_path, 'r') as file:
-        data = json.load(file)
-
-    # Filter IDs and draw random pairs
-    valid_ids = [item["uniqueProductID"] for item in data]
-    if len(valid_ids) < 2:
-        print("Not enough product IDs in the dataset to form pairs.")
-        return
-
-    random.seed(40)  # Set seed for reproducibility
-    random_pairs = random.sample([(id1, id2) for id1 in valid_ids for id2 in valid_ids if id1 != id2], min(15, len(valid_ids) * (len(valid_ids) - 1) // 2))
-
-    for id1, id2 in random_pairs:
-        product1 = next((item for item in data if item["uniqueProductID"] == id1), None)
-        product2 = next((item for item in data if item["uniqueProductID"] == id2), None)
-
-        if not product1 or not product2:
-            print(f"One or both products not found for IDs {id1} and {id2}. Skipping.")
-            continue
-
-        title1, title2 = product1["title"], product2["title"]
-
-        # Preprocess titles and extract model words
-        preprocessed_title1 = preprocess_title(title1)
-        preprocessed_title2 = preprocess_title(title2)
-        model_words1 = extract_model_words_title(preprocessed_title1)
-        model_words2 = extract_model_words_title(preprocessed_title2)
-
-        # Print titles and model words
-        print(f"\nTitle1: {preprocessed_title1}")
-        print(f"Title2: {preprocessed_title2}")
-        print(f"Model Words Title1: {model_words1}")
-        print(f"Model Words Title2: {model_words2}")
-
-        # Calculate and print cosine similarity
-        cosine_sim = calc_cosine_sim(preprocessed_title1, preprocessed_title2)
-        print(f"Cosine Similarity: {cosine_sim}")
-
-        # Calculate and print avg_lv_sim
-        avg_levenshtein_sim = avg_lv_sim(preprocessed_title1.split(), preprocessed_title2.split())
-        print(f"Average Levenshtein Similarity: {avg_levenshtein_sim}")
-

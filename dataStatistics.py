@@ -65,7 +65,6 @@ def dataStats(base_directory):
     # Plot a histogram of feature counts
     plt.figure(figsize=(8, 5))
     plt.hist(feature_counts, bins=stats["max"], color='skyblue', edgecolor='black', alpha=0.7)
-    plt.title("Distribution of Feature Counts Per Product", fontsize=14)
     plt.xlabel("Number of Features", fontsize=12)
     plt.ylabel("Frequency", fontsize=12)
     plt.grid(axis='y', linestyle='--', alpha=0.7)

@@ -12,7 +12,7 @@ import plotting
 import utils
 from bootstrapping import create_bootstraps
 from dataStatistics import dataStats
-from extract_model_words import add_all_model_words, extract_all_model_words, filter_freq_mw, save_freq_mw
+from extract_all_model_words import add_all_model_words, extract_all_model_words, filter_freq_mw, save_freq_mw
 from lsh import run_LSH, TestDataLSH
 from msmp import msmp, hClustering
 from msmp_fast import msmp_fast, hClustering_fast
@@ -271,4 +271,5 @@ if __name__ == "__main__":
 
     print("\n")
     print("################## END OF ANALYSIS ##################")
+
 

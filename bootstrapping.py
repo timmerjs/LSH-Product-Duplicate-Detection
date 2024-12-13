@@ -4,7 +4,7 @@ import random
 import os
 from sklearn.utils import resample
 
-from extract_model_words import add_all_model_words
+from extract_all_model_words import add_all_model_words
 
 
 # Function to convert fractional inches to decimal

@@ -14,25 +14,29 @@ def create_performance_plots_LSH(PC, PQ, F1_star, frac_comp, plots_folder):
     # Create three separate plots
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
 
+    # Define font sizes
+    title_fontsize = 16
+    label_fontsize = 14
+
     # Pair Completeness Plot
     ax1.plot(avg_frac_comp, avg_PC, marker='o')
-    ax1.set_xlabel('Fraction of Comparisons')
-    ax1.set_ylabel('Pair Completeness')
-    ax1.set_title('Pair Completeness')
+    ax1.set_xlabel('Fraction of Comparisons', fontsize=label_fontsize)
+    ax1.set_ylabel('Pair Completeness', fontsize=label_fontsize)
+    ax1.set_title('Pair Completeness', fontsize=title_fontsize)
     ax1.grid(True)
 
     # Pair Quality Plot
     ax2.plot(avg_frac_comp, avg_PQ, marker='s', color='green')
-    ax2.set_xlabel('Fraction of Comparisons')
-    ax2.set_ylabel('Pair Quality')
-    ax2.set_title('Pair Quality')
+    ax2.set_xlabel('Fraction of Comparisons', fontsize=label_fontsize)
+    ax2.set_ylabel('Pair Quality', fontsize=label_fontsize)
+    ax2.set_title('Pair Quality', fontsize=title_fontsize)
     ax2.grid(True)
 
     # F1-star Plot
     ax3.plot(avg_frac_comp, avg_F1_star, marker='^', color='red')
-    ax3.set_xlabel('Fraction of Comparisons')
-    ax3.set_ylabel('F1-star')
-    ax3.set_title('F1-star')
+    ax3.set_xlabel('Fraction of Comparisons', fontsize=label_fontsize)
+    ax3.set_ylabel('F1-star', fontsize=label_fontsize)
+    ax3.set_title('F1-star', fontsize=title_fontsize)
     ax3.grid(True)
 
     plt.tight_layout()
@@ -151,25 +155,29 @@ def create_running_time_plot(run_times, run_folder):
 def plot_LSH_test(results, lsh_plot_path):
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
 
+    # Define font sizes
+    title_fontsize = 16
+    label_fontsize = 14
+
     # Pair Completeness Plot
     ax1.plot(results[:, 3], results[:, 0], marker='o')
-    ax1.set_xlabel('Fraction of Comparisons')
-    ax1.set_ylabel('Pair Completeness')
-    ax1.set_title('Pair Completeness')
+    ax1.set_xlabel('Fraction of Comparisons', fontsize=label_fontsize)
+    ax1.set_ylabel('Pair Completeness', fontsize=label_fontsize)
+    ax1.set_title('Pair Completeness', fontsize=title_fontsize)
     ax1.grid(True)
 
     # Pair Quality Plot
     ax2.plot(results[:, 3], results[:, 1], marker='s', color='green')
-    ax2.set_xlabel('Fraction of Comparisons')
-    ax2.set_ylabel('Pair Quality')
-    ax2.set_title('Pair Quality')
+    ax2.set_xlabel('Fraction of Comparisons', fontsize=label_fontsize)
+    ax2.set_ylabel('Pair Quality', fontsize=label_fontsize)
+    ax2.set_title('Pair Quality', fontsize=title_fontsize)
     ax2.grid(True)
 
     # F1-star Plot
     ax3.plot(results[:, 3], results[:, 2], marker='^', color='red')
-    ax3.set_xlabel('Fraction of Comparisons')
-    ax3.set_ylabel('F1-star')
-    ax3.set_title('F1-star')
+    ax3.set_xlabel('Fraction of Comparisons', fontsize=label_fontsize)
+    ax3.set_ylabel('F1-star', fontsize=label_fontsize)
+    ax3.set_title('F1-star', fontsize=title_fontsize)
     ax3.grid(True)
 
     plt.tight_layout()
